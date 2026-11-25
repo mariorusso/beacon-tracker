@@ -1,0 +1,46 @@
+{
+  "name": "beacon-tracker",
+  "version": "1.0.0",
+  "description": "Impression and click tracking for cards/listings using data attributes and sendBeacon",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./collect": "./server/collect.js"
+  },
+  "browser": "dist/beacon-tracker.min.js",
+  "files": [
+    "src",
+    "dist",
+    "server/collect.js"
+  ],
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "npm run build && node server/server.js",
+    "test": "node --test",
+    "test:e2e": "playwright test"
+  },
+  "browserslist": [
+    "defaults",
+    "not dead"
+  ],
+  "keywords": [
+    "analytics",
+    "tracking",
+    "sendBeacon",
+    "IntersectionObserver",
+    "impressions",
+    "vanilla-js"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^8.1.3",
+    "@babel/preset-env": "^8.0.7",
+    "@playwright/test": "^1.65.1",
+    "babel-loader": "^10.1.1",
+    "webpack": "^5.113.0",
+    "webpack-cli": "^7.3.1"
+  }
+}

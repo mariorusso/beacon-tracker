@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>beacon-tracker demo</title>
+  <meta name="description" content="Live demo of beacon-tracker: impressions and clicks from HTML attributes, sent with sendBeacon." />
+  <link rel="stylesheet" href="/demo.css" />
+  <script src="/tracker.js" data-endpoint="/collect" data-debug defer></script>
+  <script src="/demo.js" type="module"></script>
+</head>
+<body>
+  <a class="skip-link" href="#listings-heading">Skip to listings</a>
+
+  <header class="site-header">
+    <h1>beacon-tracker <span class="muted">demo</span></h1>
+    <p>
+      Each listing counts an <strong>impression</strong> once at least half of it is on screen.
+      Clicks on its links are sent right away; impressions are batched and sent after
+      5&nbsp;seconds, or as soon as you switch tabs.
+    </p>
+  </header>
+
+  <div class="layout">
+    <main>
+      <nav class="toolbar" aria-label="Demo controls">
+        <button type="button" id="load-more">Load 2 more listings</button>
+        <button type="button" id="navigate">Client-side navigate</button>
+        <button type="button" id="flush">Send queued events now</button>
+      </nav>
+
+      <section aria-labelledby="listings-heading">
+        <h2 id="listings-heading" tabindex="-1">
+          Listings on <code id="current-path">/</code>
+        </h2>
+        <ul class="cards" id="listings" role="list"></ul>
+      </section>
+
+      <p class="scroll-hint" aria-hidden="true">
+        Scroll down: the listings below aren't counted until they're seen.
+      </p>
+
+      <section aria-labelledby="more-heading">
+        <h2 id="more-heading">Further down the page</h2>
+        <ul class="cards" id="below-fold" role="list"></ul>
+      </section>
+    </main>
+
+    <aside class="stats" aria-labelledby="stats-heading">
+      <h2 id="stats-heading">Collected</h2>
+      <p class="muted">Live from <code>GET /stats</code>, the collector's daily counts.</p>
+      <table>
+        <caption class="visually-hidden">Events counted by the collector</caption>
+        <thead>
+          <tr>
+            <th scope="col">Listing</th>
+            <th scope="col">Event</th>
+            <th scope="col">Page</th>
+            <th scope="col" class="num">Count</th>
+          </tr>
+        </thead>
+        <tbody id="stats-body"></tbody>
+      </table>
+      <p id="stats-empty" class="muted">Nothing yet: wait 5 seconds or click a link.</p>
+    </aside>
+  </div>
+
+  <p id="announcer" class="visually-hidden" role="status" aria-live="polite"></p>
+</body>
+</html>
