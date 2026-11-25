@@ -116,7 +116,7 @@ Only keeping daily totals keeps the table small, which mattered since this ran o
 
 ## WordPress
 
-There's also a WordPress plugin version: [beacon-tracker-wp](https://github.com/YOUR-USERNAME/beacon-tracker-wp).
+There's also a WordPress plugin version: [beacon-tracker-wp](https://github.com/mariorusso/beacon-tracker-wp).
 
 ## Build / browser support
 
