@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-// Replace sendBeacon with a stub that keeps what would have been sent, so each
-// test can check exactly what the tracker sent. Links are also stopped from
-// navigating (tel:, new tabs) so clicking them doesn't leave the page.
+// stub sendBeacon so we can see what gets sent, and stop links from
+// navigating away (tel:, new tabs)
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
     window.__sent = [];
@@ -96,7 +95,7 @@ test('a swipe is not a click, a keyboard press is', async ({ page }) => {
   await page.waitForTimeout(300);
   expect(find(await sent(page), { id: 'listing-3', type: 'click_phone' })).toHaveLength(0);
 
-  // Enter has no pointer position (detail 0) so it always counts
+  // keyboard should still count (this one failed in Firefox before the keydown fix)
   await call.focus();
   await page.keyboard.press('Enter');
   await expect

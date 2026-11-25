@@ -114,6 +114,10 @@ DO UPDATE SET count = activity_daily.count + EXCLUDED.count;
 
 Only keeping daily totals keeps the table small, which mattered since this ran on every listing page.
 
+## WordPress
+
+There's also a WordPress plugin version: [beacon-tracker-wp](https://github.com/YOUR-USERNAME/beacon-tracker-wp).
+
 ## Build / browser support
 
 The source is ES modules. webpack + Babel build `dist/beacon-tracker.min.js` for the browserslist targets in `package.json`. The build fails if the bundle goes over 10 KB, mostly to keep me honest.
